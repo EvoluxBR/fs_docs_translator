@@ -10,6 +10,7 @@
 
     textarea {
       width: 100%;
+      height: 400px;
       font-family: monospace;
       font-size: 16px;
     }
@@ -27,6 +28,7 @@
 </head>
 <body>
   <h1>FreeSwitch Docs Translator</h1>
+
   <form action="" method="get">
     Insert the old wiki page title: <input type="text" name="page" value="{{ page or '' }}" placeholder="Wiki_Page_Title" /><button type="submit">Send</button>
   </form>
@@ -43,8 +45,14 @@
   {% endwith %}
 
   {% if confluence_output %}
-  Copy the Confluence HTML:
-  <textarea name="" cols="100" rows="100" onclick="this.focus(); this.select()" readonly="readonly">{{ confluence_output }}</textarea>
+    Copy the Confluence HTML:
+    <textarea name="" cols="100" rows="100" onclick="this.focus(); this.select()" readonly="readonly">{{ confluence_output }}</textarea>
   {% endif %}
+
+
+  The source code is available at:
+  <a href="https://github.com/EvoluxBR/fs_docs_translator">
+    github.com/EvoluxBR/fs_docs_translator
+  </a>
 </body>
 </html>
