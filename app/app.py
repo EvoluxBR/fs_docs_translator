@@ -23,10 +23,15 @@ def hello():
 
     confluence_output = None
     if page:
-        confluence_output = translate(page)
-
-        if not confluence_output:
-            flash('The page %s was not found.' % page)
+        try:
+            confluence_output = translate(page)
+        except Exception as e:
+            import traceback
+            print traceback.print_exc(file=sys.stdout)
+            flash('An Exception was found: %s' % e)
+        else:
+            if not confluence_output:
+                flash('The page %s was not found.' % page)
 
     return render_template("index.html", page=page,
                            confluence_output=confluence_output)
