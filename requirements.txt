@@ -1,0 +1,9 @@
+apipkg==1.2
+lxml==3.4.1
+mwlib==0.15.14
+mwlib.xhtml==0.1.0
+odfpy==0.9.6
+py==1.4.26
+pyPdf==1.13
+pyparsing==1.5.7
+smc.mw==0.3
