@@ -158,7 +158,7 @@ def translate(page_title):
     url = BASE_URL % page_title
 
     page = urllib.urlopen(url)
-    if page.getcode() != 200:
+    if page.getcode() != 200 or 'wiki.freeswitch.org/' not in page.geturl():
         return None
 
     raw = page.read()
