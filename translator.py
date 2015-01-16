@@ -90,6 +90,20 @@ class ConfluenceWriter(MWXHTMLWriter):
     header = ''
     css = None
 
+    def asstring(self):
+        def _r(obj, p=None):
+            for c in obj:
+                assert c is not None
+                for k,v in c.items():
+                    if v is None:
+                        print k,v
+                        assert v is not None
+                _r(c,obj)
+        _r(self.root)
+        #res = self.header + ET.tostring(self.getTree())
+        res = self.header + u''.join([x.decode('utf-8') for x in ET.tostringlist(self.root, "utf-8")])
+        return res
+
     def xwritePreFormatted(self, obj):
         """Pre formatted code writer.
 
