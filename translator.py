@@ -153,13 +153,25 @@ def fix_cdata_output(xhtml):
     return xhtml
 
 
+class PageNotFound(Exception):
+    pass
+
+
+class PageAlreadyMigrated(Exception):
+    pass
+
+
 def translate(page_title):
     """Translates an Wiki Page from Media Wiki to Confluence Wiki."""
     url = BASE_URL % page_title
 
     page = urllib.urlopen(url)
-    if page.getcode() != 200 or 'wiki.freeswitch.org/' not in page.geturl():
-        return None
+    if page.getcode() != 200:
+        raise PageNotFound('The page "%s" was not found.' % page_title)
+
+    if 'wiki.freeswitch.org/' not in page.geturl():
+        raise PageAlreadyMigrated('The page "%s" was already migrated.'
+                                  % page_title)
 
     raw = page.read()
     xhtml = write_confluence_XHTML(raw.decode('utf-8'), page_title)

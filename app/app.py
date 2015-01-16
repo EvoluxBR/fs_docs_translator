@@ -29,9 +29,6 @@ def hello():
             import traceback
             print traceback.print_exc(file=sys.stdout)
             flash('An Exception was found: %s' % e)
-        else:
-            if not confluence_output:
-                flash('The page %s was not found.' % page)
 
     return render_template("index.html", page=page,
                            confluence_output=confluence_output)
