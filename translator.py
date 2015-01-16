@@ -139,11 +139,20 @@ def fix_cdata_output(xhtml):
     return xhtml
 
 
+def translate(page_title):
+    """Translates an Wiki Page from Media Wiki to Confluence Wiki."""
+    url = BASE_URL % page_title
+
+    page = urllib.urlopen(url)
+    if page.getcode() != 200:
+        return None
+
+    raw = page.read()
+    xhtml = write_confluence_XHTML(raw.decode('utf-8'), page_title)
+    xhtml = fix_cdata_output(xhtml)
+    return xhtml
+
+
 if __name__ == '__main__':
     title = sys.argv[1]
-    url = BASE_URL % title
-
-    raw = urllib.urlopen(url).read()
-    xhtml = write_confluence_XHTML(raw.decode('utf-8'), title)
-    xhtml = fix_cdata_output(xhtml)
-    print xhtml
+    print translate(title)
