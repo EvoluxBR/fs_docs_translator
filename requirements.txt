@@ -7,3 +7,4 @@ py==1.4.26
 pyPdf==1.13
 pyparsing==1.5.7
 smc.mw==0.3
+flask==0.10.1

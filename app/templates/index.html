@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+  <style type="text/css">
+    body {
+      front-size: 14px;
+    }
+
+    textarea {
+      width: 100%;
+      font-family: monospace;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>FreeSwitch Docs Translator</h1>
+  <form action="" method="get">
+    Insert the old wiki page title: <input type="text" name="page" value="{{ page or '' }}" placeholder="Wiki_Page_Title" /><button type="submit">Send</button>
+  </form>
+  <br/>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul class=flashes>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+  {% if confluence_output %}
+  Copy the Confluence HTML:
+  <textarea name="" cols="100" rows="100" onclick="this.focus(); this.select()" readonly="readonly">{{ confluence_output }}</textarea>
+  {% endif %}
+</body>
+</html>
