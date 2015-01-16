@@ -14,6 +14,16 @@
       font-size: 16px;
     }
   </style>
+  <script type="text/javascript">
+    window.onload = function() {
+      var textarea = document.getElementsByTagName('textarea');
+      if (textarea.length) {
+        textarea = textarea[0];
+        textarea.focus();
+        textarea.select();
+      }
+    }
+  </script>
 </head>
 <body>
   <h1>FreeSwitch Docs Translator</h1>
